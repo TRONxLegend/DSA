@@ -1,3 +1,4 @@
+// LINEAR SEARCH CODE//
 import java.util.*; 
 public class LinearSearch {
     public static int linearsearch(int number[], int key){
