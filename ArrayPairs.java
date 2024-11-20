@@ -3,7 +3,7 @@ import java.util.*;
 public class ArrayPair {
     public static void printPair(int numbers[]) {
         int tp = 0;
-        for (int i = 0; i < numbers.length; i++) {
+        for (int i = 0; i < numbers.length; i++) { //outer loop
             int current = numbers[i];
             for (int j = i + 1; j < numbers.length; j++) {
                 System.out.print("(" + current + "," + numbers[j] + ")");
