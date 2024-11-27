@@ -10,7 +10,6 @@ public class ArrayPair {
                 tp++;
             }
             System.out.println();
-
         }
         System.out.println("Total pairs: " + tp);
     }
