@@ -34,7 +34,5 @@ public class Matrices {
     int key = sc.nextInt();
     search(matrix, key);
     sc.close();
-
   }
-
 }
