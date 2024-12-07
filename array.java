@@ -13,4 +13,3 @@ public class array{
         }
     System.out.println();
 }
-
