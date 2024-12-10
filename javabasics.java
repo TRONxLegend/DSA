@@ -79,7 +79,6 @@
 //         while (i<=n) {
 //             sum = sum + i;
 //             i++;
-
 //         }
 //         System.out.println("Sum of first " + n + " natural numbers is: " + sum);
 //     }
