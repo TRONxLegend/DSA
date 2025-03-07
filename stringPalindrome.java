@@ -11,7 +11,7 @@ public static boolean isPalindrome (String str){
     return true;
 }
     public static void main(String args[]){
-        String str = "racecar";
+        String str = "abbccbba";
         System.out.println(isPalindrome(str)); 
     }
 }
