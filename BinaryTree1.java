@@ -56,6 +56,47 @@
 
 // kth level of binary tree:
 
+// import java.util.*;
+// class Node {
+//     int data;
+//     Node left, right;
+
+//     public Node(int data) {
+//         this.data = data;
+//         this.left = this.right = null;
+//     }
+// }
+
+// public class BinaryTree1 {
+//     public static void klevel(Node root, int k, int level){
+//         if(root == null){
+//             return;
+//         }
+//         if(level  == k){
+//             System.out.println(root.data);
+//             return;
+//         }
+//         klevel(root.left , k, level+1);
+//         klevel(root.right , k, level+1);
+//         return;
+
+//     }
+//     public static void main(String[] args) {
+//         Node root = new Node(1);
+//         root.left = new Node(2);
+//         root.right = new Node(3);
+//         root.left.left = new Node(4);
+//         root.left.right = new Node(5);
+
+//        int k = 3;
+//        klevel(root, k, 1);
+
+// }
+// }
+
+
+// Lowest common ancestor of binary tree:)
+
 import java.util.*;
 class Node {
     int data;
@@ -68,17 +109,25 @@ class Node {
 }
 
 public class BinaryTree1 {
-    public static void klevel(Node root, int k, int level){
+    public static Node lca(Node root, int n1, int n2){
         if(root == null){
-            return;
+            return null;
         }
-        if(level  == k){
-            System.out.println(root.data);
-            return;
+       if(root.data == n1 || root.data == n2){
+        System.out.println(root.data);
+        return root;
+       }
+         Node left = lca(root.left, n1, n2);
+            Node right = lca(root.right, n1, n2);
+        
+        if(right == null){
+            return left;
         }
-        klevel(root.left , k, level+1);
-        klevel(root.right , k, level+1);
-        return;
+        if(left == null){
+            return right;
+        }
+        return root;
+
 
     }
     public static void main(String[] args) {
@@ -87,9 +136,14 @@ public class BinaryTree1 {
         root.right = new Node(3);
         root.left.left = new Node(4);
         root.left.right = new Node(5);
+        root.right.left = new Node(6);
+        root.right.right = new Node(7);
 
-       int k = 3;
-       klevel(root, k, 1);
+       int n1 = 4;
+       int n2 = 7;
+
+       System.out.println(lca(root, n1, n2).data);
+     
 
 }
 }
