@@ -1,48 +1,226 @@
-public class BST {
-  static class Node{ // Node class
-    int data;
-    Node left;
-    Node right;
-Node(int data){    // Constructor
-    this.data=data;
-}
-  }
-  public static Node insert(Node root ,int val){  // Insert function
-    if(root == null){
-        root = new Node(val);
-        return root;
-    }
+// public class BST {
+//   static class Node{ // Node class
+//     int data;
+//     Node left;
+//     Node right;
+// Node(int data){    // Constructor
+//     this.data=data;
+// }
+//   }
+//   public static Node insert(Node root ,int val){  // Insert function
+//     if(root == null){
+//         root = new Node(val);
+//         return root;
+//     }
 
-    if(root.data > val){
-        root.left = insert(root.left, val);  // Recursive call to insert in left subtree
-    }
+//     if(root.data > val){
+//         root.left = insert(root.left, val);  // Recursive call to insert in left subtree
+//     }
 
-    else{
-        root.right = insert(root.right, val); // Recursive call to insert in right subtree
-    }
-    return root;
-  }
-  public static void inorder(Node root){
-    if(root == null){
-        return;
-    }
-    inorder(root.left); // Traverse left subtree
-    System.out.print(root.data + " "); // Visit node
-    inorder(root.right); // Traverse right subtree
-  }
-  public static void main(String[] args) {
-    int values[] = {10, 5, 15, 3, 7, 12, 18};
-    Node root = null;
-    for(int i=0; i<values.length; i++){
-        root = insert(root, values[i]);
-    }
+//     else{
+//         root.right = insert(root.right, val); // Recursive call to insert in right subtree
+//     }
+//     return root;
+//   }
+//   public static void inorder(Node root){
+//     if(root == null){
+//         return;
+//     }
+//     inorder(root.left); // Traverse left subtree
+//     System.out.print(root.data + " "); // Visit node
+//     inorder(root.right); // Traverse right subtree
+//   }
+//   public static void main(String[] args) {
+//     int values[] = {10, 5, 15, 3, 7, 12, 18};
+//     Node root = null;
+//     for(int i=0; i<values.length; i++){
+//         root = insert(root, values[i]);
+//     }
     
-    inorder(root);
-    System.out.println(); // Print a new line after inorder traversal
-    System.out.println("Inorder traversal of the BST is complete.");    
-    
-   
-  }
+//     inorder(root);
+//     System.out.println(); // Print a new line after inorder traversal
+//     System.out.println("Inorder traversal of the BST is complete.");    
 
-}
    
+//   }
+
+// }
+   
+
+
+          //  SEARCHING IN BST:-
+
+// public class BST{
+//     static class Node{ // Node class
+//     int data;
+//     Node left;
+//     Node right;
+   
+//     Node(int data){
+//         this.data = data;
+
+//     }
+//     }
+//     public static Node insert(Node root , int val){
+//         if(root == null){
+//             root = new Node(val);
+//             return root;
+//         }
+//         if(root.data > val ){
+//             root.left = insert(root.left, val);
+//         }
+//         else{
+//             root.right = insert(root.right, val);
+//         }
+//         return root;
+//     }
+//     public static void inorder(Node root){
+//         if(root == null){
+//             return;
+//         }
+//         inorder(root.left); // Traverse left subtree
+//         System.out.print(root.data + " "); // Visit node
+//         inorder(root.right); // Traverse right subtree
+//     }
+
+//     public static boolean search(Node root, int key){
+//         if(root == null){
+//             return false; // Base case: key not found
+//         }
+//         if(root.data == key){
+//             return true; // Key found
+//         }
+//         if(root.data > key){
+//             return search(root.left, key);
+//         }
+//         else{
+//             return search(root.right, key);
+//         }
+
+//     }
+    
+//   public static void main (String[] args){
+//     int values[] = {10, 5, 15, 3, 7, 12, 18};
+//     Node root = null;
+//     for(int i=0; i<values.length; i++){
+//         root = insert(root, values[i]);
+//     }
+    
+//     inorder(root);
+//     System.out.println(); // Print a new line after inorder traversal
+//     System.out.println("Inorder traversal of the BST is complete.");    
+
+//     // Searching in BST
+//     int searchValue = 20;
+//     boolean found = search(root, searchValue);
+//     if(found){
+//         System.out.println("Value " + searchValue + " found in the BST.");
+//     } else {
+//         System.out.println("Value " + searchValue + " not found in the BST.");
+//     }
+//     System.out.println(); // Print a new line after searching
+//   }
+// }          
+
+
+
+            //  PRINT IN RANGE:-
+
+            public class BST{
+                static class Node{ // Node class
+                int data;
+                Node left;
+                Node right;
+               
+                Node(int data){
+                    this.data = data;
+            
+                }
+                }
+                public static Node insert(Node root , int val){
+                    if(root == null){
+                        root = new Node(val);
+                        return root;
+                    }
+                    if(root.data > val ){
+                        root.left = insert(root.left, val);
+                    }
+                    else{
+                        root.right = insert(root.right, val);
+                    }
+                    return root;
+                }
+                public static void inorder(Node root){
+                    if(root == null){
+                        return;
+                    }
+                    inorder(root.left); // Traverse left subtree
+                    System.out.print(root.data + " "); // Visit node
+                    inorder(root.right); // Traverse right subtree
+                }
+            
+                public static boolean search(Node root, int key){
+                    if(root == null){
+                        return false; // Base case: key not found
+                    }
+                    if(root.data == key){
+                        return true; // Key found
+                    }
+                    if(root.data > key){
+                        return search(root.left, key);
+                    }
+                    else{
+                        return search(root.right, key);
+                    }
+            
+                }
+
+                public static void printInRange(Node root, int low, int high) {
+                    if (root == null) {
+                        return; // Base case: empty subtree
+                    }
+            
+                    // Traverse left subtree if the current node's value is greater than low
+                    if (root.data > low) {
+                        printInRange(root.left, low, high);
+                    }
+            
+                    // Print the current node's value if it is within the range [low, high]
+                    if (root.data >= low && root.data <= high) {
+                        System.out.print(root.data + " ");
+                    }
+            
+                    // Traverse right subtree if the current node's value is less than high
+                    if (root.data < high) {
+                        printInRange(root.right, low, high);
+                    }
+                }
+                
+              public static void main (String[] args){
+                int values[] = {10, 5, 15, 3, 7, 12, 18};
+                Node root = null;
+                for(int i=0; i<values.length; i++){
+                    root = insert(root, values[i]);
+                }
+                
+                inorder(root);
+                System.out.println(); // Print a new line after inorder traversal
+                System.out.println("Inorder traversal of the BST is complete.");    
+            
+                // Searching in BST
+                int searchValue = 20;
+                boolean found = search(root, searchValue);
+                if(found){
+                    System.out.println("Value " + searchValue + " found in the BST.");
+                } else {
+                    System.out.println("Value " + searchValue + " not found in the BST.");
+                }
+                System.out.println(); // Print a new line after searching
+
+                // Print nodes in the range [4, 15]
+
+                System.out.println("Nodes in the range [4, 10]:");
+                printInRange(root, 4, 10);
+                System.out.println(); // Print a new line after printing range
+              }
+            }    
