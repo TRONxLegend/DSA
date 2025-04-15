@@ -474,70 +474,121 @@
 
             //  Validate BST:-
 
-            public class BST {
-                static class Node{ // Node class
-                  int data;
-                  Node left;
-                  Node right;
-              Node(int data){    // Constructor
-                  this.data=data;
-              }
-                }
-                public static Node insert(Node root ,int val){  // Insert function
-                  if(root == null){
-                      root = new Node(val);
-                      return root;
-                  }
+            // public class BST {
+            //     static class Node{ // Node class
+            //       int data;
+            //       Node left;
+            //       Node right;
+            //   Node(int data){    // Constructor
+            //       this.data=data;
+            //   }
+            //     }
+            //     public static Node insert(Node root ,int val){  // Insert function
+            //       if(root == null){
+            //           root = new Node(val);
+            //           return root;
+            //       }
               
-                  if(root.data > val){
-                      root.left = insert(root.left, val);  // Recursive call to insert in left subtree
-                  }
+            //       if(root.data > val){
+            //           root.left = insert(root.left, val);  // Recursive call to insert in left subtree
+            //       }
               
-                  else{
-                      root.right = insert(root.right, val); // Recursive call to insert in right subtree
-                  }
-                  return root;
-                }
-                public static void inorder(Node root){
-                  if(root == null){
-                      return;
-                  }
-                  inorder(root.left); // Traverse left subtree
-                  System.out.print(root.data + " "); // Visit node
-                  inorder(root.right); // Traverse right subtree
-                }
+            //       else{
+            //           root.right = insert(root.right, val); // Recursive call to insert in right subtree
+            //       }
+            //       return root;
+            //     }
+            //     public static void inorder(Node root){
+            //       if(root == null){
+            //           return;
+            //       }
+            //       inorder(root.left); // Traverse left subtree
+            //       System.out.print(root.data + " "); // Visit node
+            //       inorder(root.right); // Traverse right subtree
+            //     }
 
-                public static boolean isValidBST(Node root , Node min, Node max){
-                    if(root == null){
-                        return true;
-                    }
-                    if(min != null && root.data <= min.data){
-                        return false;
-                    }
-                    if(max != null && root.data >= max.data){
-                        return false;
-                    }
-                    return isValidBST(root.left, min, root) &&
-                            isValidBST(root.right, root, max);
-                }
-                public static void main(String[] args) {
-                  int values[] = {10, 5, 15, 3, 7, 12, 18};
-                  Node root = null;
-                  for(int i=0; i<values.length; i++){
-                      root = insert(root, values[i]);
-                  }
+            //     public static boolean isValidBST(Node root , Node min, Node max){
+            //         if(root == null){
+            //             return true;
+            //         }
+            //         if(min != null && root.data <= min.data){
+            //             return false;
+            //         }
+            //         if(max != null && root.data >= max.data){
+            //             return false;
+            //         }
+            //         return isValidBST(root.left, min, root) &&
+            //                 isValidBST(root.right, root, max);
+            //     }
+            //     public static void main(String[] args) {
+            //       int values[] = {10, 5, 15, 3, 7, 12, 18};
+            //       Node root = null;
+            //       for(int i=0; i<values.length; i++){
+            //           root = insert(root, values[i]);
+            //       }
                   
-                  inorder(root);
-                  System.out.println(); // Print a new line after inorder traversal
-                  System.out.println("Inorder traversal of the BST is complete.");    
+            //       inorder(root);
+            //       System.out.println(); // Print a new line after inorder traversal
+            //       System.out.println("Inorder traversal of the BST is complete.");    
               
-                  if(isValidBST(root, null, null)){
-                        System.out.println("The tree is not a valid BST.");
-                    }
-                    else{
-                        System.out.println("The tree is a valid BST.");
-                  }
-                }
+            //       if(isValidBST(root, null, null)){
+            //             System.out.println("The tree is not a valid BST.");
+            //         }
+            //         else{
+            //             System.out.println("The tree is a valid BST.");
+            //       }
+            //     }
               
-              }
+            //   }
                  
+
+
+            // Mirror BST :-
+
+public class BST{
+  static class Node{
+    int data;
+    Node left;
+    Node right;
+    Node(int data){
+        this.data = data;
+        this.left = null;
+        this.right= null;
+    }
+  }
+  public static Node mirror(Node root ){
+    if(root == null){
+        return null;
+    }
+ 
+    Node lefts = mirror(root.left);
+    Node rights = mirror(root.right);
+
+    root.left = rights;
+    root.right = lefts;
+    return root;
+  }
+  public static void preorder(Node root){
+    if(root == null){
+        return;
+    }
+    System.out.print(root.data + " ");
+    preorder(root.left);
+    preorder(root.right);
+  }
+  
+  public static void main(String[] args){
+    Node root = new Node(8);
+    root.left = new Node(5);
+    root.left.left = new Node(3);
+    root.left.right= new Node(6);
+    root.right = new Node(10);
+    root.right.right = new Node(12);
+
+    root =  mirror(root);
+    preorder(root);
+    System.out.println(); // Print a new line after preorder traversal
+    System.out.println("Preorder traversal of the mirrored BST is complete.");
+
+  }
+}
