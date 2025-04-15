@@ -545,50 +545,116 @@
 
             // Mirror BST :-
 
-public class BST{
-  static class Node{
-    int data;
-    Node left;
-    Node right;
-    Node(int data){
-        this.data = data;
-        this.left = null;
-        this.right= null;
-    }
-  }
-  public static Node mirror(Node root ){
-    if(root == null){
-        return null;
-    }
+// public class BST{
+//   static class Node{
+//     int data;
+//     Node left;
+//     Node right;
+//     Node(int data){
+//         this.data = data;
+//         this.left = null;
+//         this.right= null;
+//     }
+//   }
+//   public static Node mirror(Node root ){
+//     if(root == null){
+//         return null;
+//     }
  
-    Node lefts = mirror(root.left);
-    Node rights = mirror(root.right);
+//     Node lefts = mirror(root.left);
+//     Node rights = mirror(root.right);
 
-    root.left = rights;
-    root.right = lefts;
-    return root;
-  }
-  public static void preorder(Node root){
-    if(root == null){
-        return;
-    }
-    System.out.print(root.data + " ");
-    preorder(root.left);
-    preorder(root.right);
-  }
+//     root.left = rights;
+//     root.right = lefts;
+//     return root;
+//   }
+//   public static void preorder(Node root){
+//     if(root == null){
+//         return;
+//     }
+//     System.out.print(root.data + " ");
+//     preorder(root.left);
+//     preorder(root.right);
+//   }
   
-  public static void main(String[] args){
-    Node root = new Node(8);
-    root.left = new Node(5);
-    root.left.left = new Node(3);
-    root.left.right= new Node(6);
-    root.right = new Node(10);
-    root.right.right = new Node(12);
+//   public static void main(String[] args){
+//     Node root = new Node(8);
+//     root.left = new Node(5);
+//     root.left.left = new Node(3);
+//     root.left.right= new Node(6);
+//     root.right = new Node(10);
+//     root.right.right = new Node(12);
 
-    root =  mirror(root);
-    preorder(root);
-    System.out.println(); // Print a new line after preorder traversal
-    System.out.println("Preorder traversal of the mirrored BST is complete.");
+//     root =  mirror(root);
+//     preorder(root);
+//     System.out.println(); // Print a new line after preorder traversal
+//     System.out.println("Preorder traversal of the mirrored BST is complete.");
 
-  }
-}
+//   }
+// }
+
+
+            // Sorted Array to Balance BST:-
+            // public class BST{
+            //       static class Node{
+            //         int data;
+            //         Node left;
+            //         Node right;
+            //         Node(int data){
+            //             this.data = data;
+            //             this.left = null;
+            //             this.right= null;
+            //         }
+            //       }
+            //       public static Node mirror(Node root ){
+            //         if(root == null){
+            //             return null;
+            //         }
+                 
+            //         Node lefts = mirror(root.left);
+            //         Node rights = mirror(root.right);
+                
+            //         root.left = rights;
+            //         root.right = lefts;
+            //         return root;
+            //       }
+            //       public static void preorder(Node root){
+            //         if(root == null){
+            //             return;
+            //         }
+            //         System.out.print(root.data + " ");
+            //         preorder(root.left);
+            //         preorder(root.right);
+            //       }
+            //       public static Node SortedArrayToBST(int arr[], int start, int end){
+            //         if(start>end){
+            //             return null;
+            //         }
+            //         int mid = (start + end)/2;
+            //         Node root = new Node (arr[mid]);
+            //         root.left = SortedArrayToBST(arr,start,mid-1);
+            //         root.right=SortedArrayToBST(arr, mid+1, end);
+            //         return root;
+            //       }
+            //       public static void main(String[] args){
+            //       int arr[] = {3, 5, 6, 8, 10,11, 12};
+
+            //         int n = arr.length;
+            //         Node root = SortedArrayToBST(arr, 0, n-1);
+            //       preorder(root);
+            //         System.out.println();
+            //         System.out.println("Preorder traversal of the BST is complete.");
+
+
+                
+            //         root =  mirror(root);
+            //         preorder(root);
+            //         System.out.println(); // Print a new line after preorder traversal
+            //         System.out.println("Preorder traversal of the mirrored BST is complete.");
+                
+            //       }
+            //     }
+                
+
+
+            // Convert BST into Balanced BST:-
