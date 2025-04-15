@@ -658,3 +658,55 @@
 
 
             // Convert BST into Balanced BST:-
+            public class BST{
+                static class Node{
+                    int data;
+                    Node left;
+                    Node right;
+                    Node(int data){
+                        this.data=data;
+                        this.left = null;
+                        this.right = null; 
+                    }
+                    
+                    }
+                    public static void inorder(Node root){
+                        if(root== null){
+                            return;
+                        }
+                        inorder(root.left);
+                        System.out.print(root.data + " ");
+                        inorder(root.right);
+                    }
+                    public static Node BalancedBST(int arr[],int start,int end){
+                        if(start>end){
+                            return null;
+                        }
+                        int mid = (start + end)/2;
+                        Node root =new Node(arr[mid]);
+                        root.left = BalancedBST(arr,start,mid-1);
+                        root.right = BalancedBST(arr,mid+1,end);
+                        return root;
+                    }
+                public static void preorder(Node root){
+                    if(root == null){
+                        return;
+                    }
+                    System.out.print(root.data + " ");
+                    preorder(root.left);    
+                    preorder(root.right);
+                }
+                
+                public static void main(String[] args){
+                    int arr[]= {3,5,6,8,10,11,12};
+                    int n = arr.length;
+                    Node root = BalancedBST(arr,0,n-1);
+                    preorder(root);
+                    System.out.println(); // Print a new line after preorder traversal
+                    System.out.println("Preorder traversal of the BST is complete.");
+                    inorder(root);
+                    System.out.println();
+                    System.out.println("Inorder traversal of the BST is complete.");
+
+                }
+            }
