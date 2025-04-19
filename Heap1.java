@@ -180,41 +180,67 @@
 
 //                             Nearby Cars:-                   //
 
-import java.util.*;
-public class Heap1{
-        static class Point implements Comparable<Point>{
-                int dist;
-                int x;
-                int y;
-                int idx;
-                public Point(int dist , int x, int y, int idx){
-                        this.dist = dist;
-                        this.x = x;
-                        this.y = y;
-                        this.idx = idx;
-        }
-        @Override
-        public int compareTo(Point p){
-                return this.dist - p.dist; // min heap
-        }
+// import java.util.*;
+// public class Heap1{
+//         static class Point implements Comparable<Point>{
+//                 int dist;
+//                 int x;
+//                 int y;
+//                 int idx;
+//                 public Point(int dist , int x, int y, int idx){
+//                         this.dist = dist;
+//                         this.x = x;
+//                         this.y = y;
+//                         this.idx = idx;
+//         }
+//         @Override
+//         public int compareTo(Point p){
+//                 return this.dist - p.dist; // min heap
+//         }
 
 
-        }
-        public static void main(String args[]){
-                int arr [] []={{3,3},{5,-1},{-2,4}};
-                int k =2;
-                PriorityQueue<Point> pq = new PriorityQueue<>();
-                for(int i = 0; i<arr.length; i++){
-                        int x= arr[i][0];
-                        int y= arr[i][1];
-                        int dist = (x*x) + (y*y);
-                        pq.add(new Point(dist,x,y,i));
-                }
-               for(int i =0; i<k; i++){
-                        System.out.println("c"+ pq.remove().idx);
+//         }
+//         public static void main(String args[]){
+//                 int arr [] []={{3,3},{5,-1},{-2,4}};
+//                 int k =2;
+//                 PriorityQueue<Point> pq = new PriorityQueue<>();
+//                 for(int i = 0; i<arr.length; i++){
+//                         int x= arr[i][0];
+//                         int y= arr[i][1];
+//                         int dist = (x*x) + (y*y);
+//                         pq.add(new Point(dist,x,y,i));
+//                 }
+//                for(int i =0; i<k; i++){
+//                         System.out.println("c"+ pq.remove().idx);
                         
-                }
+//                 }
 
                 
-}
+// }
+// }
+
+
+//                           Connect N Ropes:-
+import java.util.*;
+public class Heap1{
+        public static void main(String args[]){
+                int ropes[] = {4,3,2,6};
+                
+                PriorityQueue<Integer> pq = new PriorityQueue<>();
+                for(int i= 0; i<ropes.length;i++){
+                        pq.add(ropes[i]);
+
+        
+                }
+                int cost = 0;
+                while(pq.size()>1){
+                        int first = pq.remove();
+                        int second = pq.remove();
+                        cost += first + second;
+                        pq.add(first + second);
+                        
+                }
+                System.out.println("Cost: " + cost);
+        }
+        
 }
