@@ -131,48 +131,90 @@
 
         //               Heap Sort:-           //       
 
-        import java.util.*;
-        public class Heap1{
-                public static void heapify(int arr[], int i,int n){
-                        int left =2*i+1;
-                        int right =2*i+2;
-                        int max = i;
-                        if(left < n && arr[left] > arr[max]){
-                                max =left;
-                        }
-                        if(right < n && arr[right] > arr[max]){
-                                max = right;
-                        }
-                        if(max !=i){
-                                int temp = arr[i];
-                                arr[i] = arr[max];
-                                arr[max] = temp;
-                                heapify(arr,max,n); // recursive call
-                        }
-                }
-                public static void heapSort(int arr[]){
-                        int n = arr.length;
+        // import java.util.*;
+        // public class Heap1{
+        //         public static void heapify(int arr[], int i,int n){
+        //                 int left =2*i+1;
+        //                 int right =2*i+2;
+        //                 int max = i;
+        //                 if(left < n && arr[left] > arr[max]){
+        //                         max =left;
+        //                 }
+        //                 if(right < n && arr[right] > arr[max]){
+        //                         max = right;
+        //                 }
+        //                 if(max !=i){
+        //                         int temp = arr[i];
+        //                         arr[i] = arr[max];
+        //                         arr[max] = temp;
+        //                         heapify(arr,max,n); // recursive call
+        //                 }
+        //         }
+        //         public static void heapSort(int arr[]){
+        //                 int n = arr.length;
 
-                        // step 1: build heap: 
-                        for(int i =n/2; i>=0; i--){
-                                heapify(arr,i,n);
-                        }
-                       // step-2 : - Push largest element to end of array//
-                       for(int i = n-1;i>0;i--){
-                        int temp = arr[0];
-                        arr[0]= arr[i];
-                        arr[i] = temp;
-                        heapify(arr,0,i);
-                       }
-                }
-                public static void main(String arg[]){
-                        int arr[] = {1,2,4,5,3};
-                        heapSort(arr);
-                        System.out.println("Sorted array is: ");
-                        for(int i =0;i<arr.length;i++){
-                                System.out.print(arr[i] + " ");
-                        }
-                        System.out.println();
+        //                 // step 1: build heap: 
+        //                 for(int i =n/2; i>=0; i--){
+        //                         heapify(arr,i,n);
+        //                 }
+        //                // step-2 : - Push largest element to end of array//
+        //                for(int i = n-1;i>0;i--){
+        //                 int temp = arr[0];
+        //                 arr[0]= arr[i];
+        //                 arr[i] = temp;
+        //                 heapify(arr,0,i);
+        //                }
+        //         }
+        //         public static void main(String arg[]){
+        //                 int arr[] = {1,2,4,5,3};
+        //                 heapSort(arr);
+        //                 System.out.println("Sorted array is: ");
+        //                 for(int i =0;i<arr.length;i++){
+        //                         System.out.print(arr[i] + " ");
+        //                 }
+        //                 System.out.println();
 
-                }
+        //         }
+        // }
+
+
+//                             Nearby Cars:-                   //
+
+import java.util.*;
+public class Heap1{
+        static class Point implements Comparable<Point>{
+                int dist;
+                int x;
+                int y;
+                int idx;
+                public Point(int dist , int x, int y, int idx){
+                        this.dist = dist;
+                        this.x = x;
+                        this.y = y;
+                        this.idx = idx;
         }
+        @Override
+        public int compareTo(Point p){
+                return this.dist - p.dist; // min heap
+        }
+
+
+        }
+        public static void main(String args[]){
+                int arr [] []={{3,3},{5,-1},{-2,4}};
+                int k =2;
+                PriorityQueue<Point> pq = new PriorityQueue<>();
+                for(int i = 0; i<arr.length; i++){
+                        int x= arr[i][0];
+                        int y= arr[i][1];
+                        int dist = (x*x) + (y*y);
+                        pq.add(new Point(dist,x,y,i));
+                }
+               for(int i =0; i<k; i++){
+                        System.out.println("c"+ pq.remove().idx);
+                        
+                }
+
+                
+}
+}
