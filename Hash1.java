@@ -17,5 +17,15 @@ public class Hash1 {
         // T.C :) (1);
         int data = map.get("Ayush");
         System.out.println(data);
+
+        // containsKey() - To check if a specific key exists in the hash map.
+        // T.C :) O(1);
+        boolean check = map.containsKey("Anukriti");
+        System.out.println(check);
+
+        // remove() - To remove a key-value pair from the hash map.
+        // T.C :) O(1);
+        map.remove("Anu");
+        System.out.println(map);
     }
 }
