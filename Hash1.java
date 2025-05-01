@@ -172,10 +172,27 @@
 
 
 //  Linked HashSet Implementation :)
+// import java.util.*;
+// public class Hash1{
+//     public static void main(String args[]){
+//         LinkedHashSet<String> set = new LinkedHashSet<>();
+//         set.add("Ayush");
+//         set.add("Anukriti");
+//         set.add("Lakhan");
+//         set.add("Anu");
+//         System.out.println(set);
+//         System.out.println(set.contains("Ayush"));
+//         System.out.println(set.size());
+//         set.remove("Anukriti");
+//         System.out.println(set);
+//     }
+// }
+
+// TreeSet Implementation :)
 import java.util.*;
 public class Hash1{
     public static void main(String args[]){
-        LinkedHashSet<String> set = new LinkedHashSet<>();
+        TreeSet<String> set = new TreeSet<>();
         set.add("Ayush");
         set.add("Anukriti");
         set.add("Lakhan");
