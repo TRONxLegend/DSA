@@ -189,18 +189,32 @@
 // }
 
 // TreeSet Implementation :)
+// import java.util.*;
+// public class Hash1{
+//     public static void main(String args[]){
+//         TreeSet<String> set = new TreeSet<>();
+//         set.add("Ayush");
+//         set.add("Anukriti");
+//         set.add("Lakhan");
+//         set.add("Anu");
+//         System.out.println(set);
+//         System.out.println(set.contains("Ayush"));
+//         System.out.println(set.size());
+//         set.remove("Anukriti");
+//         System.out.println(set);
+//     }
+// }
+
+
+// Question: Count Distinct Elements in an Array :)
 import java.util.*;
 public class Hash1{
     public static void main(String args[]){
-        TreeSet<String> set = new TreeSet<>();
-        set.add("Ayush");
-        set.add("Anukriti");
-        set.add("Lakhan");
-        set.add("Anu");
-        System.out.println(set);
-        System.out.println(set.contains("Ayush"));
-        System.out.println(set.size());
-        set.remove("Anukriti");
-        System.out.println(set);
+        int arr[] = {1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9};
+        HashSet<Integer> set = new HashSet<>();
+        for(int i = 0; i<arr.length;i++){
+            set.add(arr[i]);
+        }
+        System.out.println("Distinct elements in the array are: " + set.size());
     }
 }
