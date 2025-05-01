@@ -94,19 +94,37 @@
 
 
 // Linked HashMap Implementation :)
+// import java.util.*;
+// public class Hash1{
+// public static void main(String[] args){
+//     LinkedHashMap<String , Integer> map = new LinkedHashMap<>();
+//     map.put("India",100);
+//     map.put("USA",200);
+//     map.put("China",300);
+//     map.put("Russia",400);
+//     map.put("UK",500);
+//     System.out.println(map);
+//     int check = map.get("India");
+//     System.out.println(check);
+//     System.out.println(map.containsKey("Nepal"));
+//     System.out.println(map.size());;
+// }
+// }
+
+
+// Tree Map Implementation :)
 import java.util.*;
 public class Hash1{
-public static void main(String[] args){
-    LinkedHashMap<String , Integer> map = new LinkedHashMap<>();
-    map.put("India",100);
-    map.put("USA",200);
-    map.put("China",300);
-    map.put("Russia",400);
-    map.put("UK",500);
-    System.out.println(map);
-    int check = map.get("India");
-    System.out.println(check);
-    System.out.println(map.containsKey("Nepal"));
-    System.out.println(map.size());;
+    public static void main(String[] args){
+        TreeMap<String , Integer> map = new TreeMap<>();
+    map.put("Ayush",2);
+    map.put("Anukriti",1);
+    map.put("Lakhan",3);
+    map.put("Anu",4);
+    System.out.println(map); 
+    int find = map.get("Ayush");
+    System.out.println(find);
+    System.out.println(map.containsKey("Anukriti"));
+    System.out.println(map.size());   
 }
 }
