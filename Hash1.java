@@ -32,22 +32,63 @@
 
 // Iterations on HashMap:)
 
-import java.util.*;
-public class Hash1{
-    public static void main(String[] args){
-        HashMap<String , Integer> map = new HashMap<>();
-        map.put("India",100);
-        map.put("USA",200);
-        map.put("China",300);
-        map.put("Nepal",400);
-        map.put("Bhutan",500);
-        System.out.println(map);
-        // Iterating on HashMap
-        // T.C :) O(n) in worst case
-     Set<String>keys = map.keySet();
-     System.out.println(keys);
-     for (String s : keys) {
-        System.out.println("key" + s + "value= "+ map.get(s));
-     }
-    }
-}
+// import java.util.*;
+// public class Hash1{
+//     public static void main(String[] args){
+//         HashMap<String , Integer> map = new HashMap<>();
+//         map.put("India",100);
+//         map.put("USA",200);
+//         map.put("China",300);
+//         map.put("Nepal",400);
+//         map.put("Bhutan",500);
+//         System.out.println(map);
+//         // Iterating on HashMap
+//         // T.C :) O(n) in worst case
+//      Set<String>keys = map.keySet();
+//      System.out.println(keys);
+//      for (String s : keys) {
+//         System.out.println("key" + s + "value= "+ map.get(s));
+//      }
+//     }
+// }
+
+
+// HASHMAP IMPLEMENTATION CODE :)
+// import java.util.*;
+// public class Hash1{
+//   static class HashMap<K,V>{
+//     private class Node{
+//         K key;
+//         V value;
+
+//         public Node(K key, V value){
+//             this.key = key;
+//             this.value = value;
+//         }
+//     }
+//         private int size;//n 
+//         private LinkedList<Node>buckets[]; //N
+//         @SuppressWarnings("unchecked")
+//         public HashMap(){
+//             this.size = 0;
+//             this.buckets = new LinkedList<>();
+//             for(int i = 0; i<4; i++){
+//                 this.buckets[i] = new LinkedList<>();
+//             }
+//             }
+//             private int hashFunction(K key){
+//               int hc = key.hashCode();
+//               return Math.abs(hc) % size;
+//             }
+//             public void put(K key, V value){
+//             int bi = hashFunction(key);
+//             int di = SearchinLL(key);// vaild index / -1:
+//             }
+//             public boolean containsKey(K key){
+//                 return false;
+//             }
+        
+    
+//   }
+// }
+
