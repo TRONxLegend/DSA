@@ -150,22 +150,40 @@
 
 
 // Iterator Implementation :)
+// import java.util.*;
+// public class Hash1{
+//     public static void main(String args[]){
+//         HashSet<String> set = new HashSet<>();
+//         set.add("Ayush");
+//         set.add("Anukriti");
+//         set.add("Lakhan");
+//         set.add("Anu");
+//         System.out.println(set);
+//         Iterator<String> it = set.iterator();
+//         while(it.hasNext()){
+//             System.out.println(it.next());
+//         }
+//         // Iterating using for-each loop
+//         for (String s : set) {
+//          System.out.println("set:" + s +","+"value= "+ set.contains(s));            
+//         }
+//     }
+// }
+
+
+//  Linked HashSet Implementation :)
 import java.util.*;
 public class Hash1{
     public static void main(String args[]){
-        HashSet<String> set = new HashSet<>();
+        LinkedHashSet<String> set = new LinkedHashSet<>();
         set.add("Ayush");
         set.add("Anukriti");
         set.add("Lakhan");
         set.add("Anu");
         System.out.println(set);
-        Iterator<String> it = set.iterator();
-        while(it.hasNext()){
-            System.out.println(it.next());
-        }
-        // Iterating using for-each loop
-        for (String s : set) {
-         System.out.println("set:" + s +","+"value= "+ set.contains(s));            
-        }
+        System.out.println(set.contains("Ayush"));
+        System.out.println(set.size());
+        set.remove("Anukriti");
+        System.out.println(set);
     }
 }
