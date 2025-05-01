@@ -113,18 +113,37 @@
 
 
 // Tree Map Implementation :)
+// import java.util.*;
+// public class Hash1{
+//     public static void main(String[] args){
+//         TreeMap<String , Integer> map = new TreeMap<>();
+//     map.put("Ayush",2);
+//     map.put("Anukriti",1);
+//     map.put("Lakhan",3);
+//     map.put("Anu",4);
+//     System.out.println(map); 
+//     int find = map.get("Ayush");
+//     System.out.println(find);
+//     System.out.println(map.containsKey("Anukriti"));
+//     System.out.println(map.size());   
+// }
+// }
+
+
+//  HashSet Implementation :)
 import java.util.*;
 public class Hash1{
     public static void main(String[] args){
-        TreeMap<String , Integer> map = new TreeMap<>();
-    map.put("Ayush",2);
-    map.put("Anukriti",1);
-    map.put("Lakhan",3);
-    map.put("Anu",4);
-    System.out.println(map); 
-    int find = map.get("Ayush");
-    System.out.println(find);
-    System.out.println(map.containsKey("Anukriti"));
-    System.out.println(map.size());   
-}
+        HashSet<String> set = new HashSet<>();
+        set.add("Ayush");
+        set.add("Anukriti");
+        set.add("Lakhan");
+        set.add("Anu");
+        System.out.println(set);
+        System.out.println(set.contains("Ayush"));
+        System.out.println(set.size());
+        set.remove("Anukriti");
+        System.out.println(set);
+
+    }
 }
