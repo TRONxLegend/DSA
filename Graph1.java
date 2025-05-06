@@ -1,4 +1,3 @@
 public class Graph1 {
-    
 }
         
