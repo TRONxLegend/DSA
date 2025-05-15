@@ -351,76 +351,149 @@
 // Connected Components using DFS:-
 
 
-import java.util.*;
+// import java.util.*;
 
-public class Graph1 {
+// public class Graph1 {
 
-  static class Edge {
-    int src;
-    int dest;
-    int wt;
+//   static class Edge {
+//     int src;
+//     int dest;
+//     int wt;
 
-    public Edge(int s, int d, int w) {
-      this.src = s;
-      this.dest = d;
-      this.wt = w;
-    }
-  }
+//     public Edge(int s, int d, int w) {
+//       this.src = s;
+//       this.dest = d;
+//       this.wt = w;
+//     }
+//   }
 
-  static void createGraph(ArrayList<Edge>[] graph) {
-    for (int i = 0; i < graph.length; i++) {
-      graph[i] = new ArrayList<>();
-    }
+//   static void createGraph(ArrayList<Edge>[] graph) {
+//     for (int i = 0; i < graph.length; i++) {
+//       graph[i] = new ArrayList<>();
+//     }
 
-    // 0 :-
-    graph[0].add(new Edge(0, 1, 5));
+//     // 0 :-
+//     graph[0].add(new Edge(0, 1, 5));
 
-    // 1:-
-    graph[1].add(new Edge(1, 0, 5));
-    graph[1].add(new Edge(1, 2, 1));
-    graph[1].add(new Edge(1, 3, 3));
+//     // 1:-
+//     graph[1].add(new Edge(1, 0, 5));
+//     graph[1].add(new Edge(1, 2, 1));
+//     graph[1].add(new Edge(1, 3, 3));
 
-    // 2:-
-    graph[2].add(new Edge(2, 1, 1));
-    graph[2].add(new Edge(2, 3, 1));
-    graph[2].add(new Edge(2, 4, 2));
+//     // 2:-
+//     graph[2].add(new Edge(2, 1, 1));
+//     graph[2].add(new Edge(2, 3, 1));
+//     graph[2].add(new Edge(2, 4, 2));
 
-    // 3:-
-    graph[3].add(new Edge(3, 1, 3));
-    graph[3].add(new Edge(3, 2, 1));
+//     // 3:-
+//     graph[3].add(new Edge(3, 1, 3));
+//     graph[3].add(new Edge(3, 2, 1));
 
-    // 4:-
-    graph[4].add(new Edge(4, 2, 2));
-  }
+//     // 4:-
+//     graph[4].add(new Edge(4, 2, 2));
+//   }
 
-public static void dfsUtil(ArrayList<Edge>[] graph, int curr , boolean vis[] ) {
-    System.out.println(curr);
-    vis[curr] = true;
+// public static void dfsUtil(ArrayList<Edge>[] graph, int curr , boolean vis[] ) {
+//     System.out.println(curr);
+//     vis[curr] = true;
     
-    for (Edge e : graph[curr]) {
-      if (!vis[e.dest]) {
-        dfsUtil(graph, e.dest, vis);
-      }
-    }
-  }
+//     for (Edge e : graph[curr]) {
+//       if (!vis[e.dest]) {
+//         dfsUtil(graph, e.dest, vis);
+//       }
+//     }
+//   }
 
-  public static void dfs(ArrayList<Edge>[] graph) {
-    boolean vis[] = new boolean[graph.length];
-    int count = 0;
-    for(int i =0 ; i<graph.length; i++){
-      if(!vis[i]){
-        System.out.println("Connected Component " + (++count) + ":");
-        dfsUtil(graph, i, vis);
-        System.out.println();
-      }
+//   public static void dfs(ArrayList<Edge>[] graph) {
+//     boolean vis[] = new boolean[graph.length];
+//     int count = 0;
+//     for(int i =0 ; i<graph.length; i++){
+//       if(!vis[i]){
+//         System.out.println("Connected Component " + (++count) + ":");
+//         dfsUtil(graph, i, vis);
+//         System.out.println();
+//       }
+//     }
+//     System.out.println("Total Connected Components: " + count);
+// }
+//   public static void main(String[] args) {
+//     int v = 5;
+//     ArrayList<Edge>[] graph = new ArrayList[v]; // null -> empty ArrayList
+//     createGraph(graph);
+//     System.out.println("DFS Traversal:");
+//     dfs(graph);
+//   }
+// }
+
+
+// Bipartite Graph :- Done By Using Graph Colouring Using BFS...
+import java.util.*;
+public class Graph1{
+    static class Edge{
+        int src;
+        int dest;
+        public Edge(int s, int d) {
+            this.src = s;
+            this.dest = d;
+        }
     }
-    System.out.println("Total Connected Components: " + count);
+
+public static void createGraph(ArrayList<Edge>[] graph){
+    for(int i = 0; i< graph.length; i++){
+        graph[i] = new ArrayList<>();
+    }
+    graph[0].add(new Edge(0,1));
+    graph[0].add(new Edge(0,2));
+
+    graph[1].add(new Edge(1,0));
+    graph[1].add(new Edge(1,3));
+
+    graph[2].add(new Edge(2,0));
+    graph[2].add(new Edge(2,4));
+
+    graph[3].add(new Edge(3,1));
+    graph[3].add(new Edge(3,4));
+
+    graph[4].add(new Edge(4,2));
+    graph[4].add(new Edge(4,3));
 }
-  public static void main(String[] args) {
-    int v = 5;
-    ArrayList<Edge>[] graph = new ArrayList[v]; // null -> empty ArrayList
+
+public static boolean isBipartite(ArrayList<Edge>[] graph){
+    boolean vis[] = new boolean[graph.length];
+    int col[] = new int[graph.length];
+    for(int i = 0; i<col.length; i++){
+        col[i] = -1;
+    }
+    Queue<Integer> q =new LinkedList<>();
+    for(int i = 0; i<graph.length; i++){
+        if(col[i] == -1){
+            q.add(i);
+            col[i] = 0;
+            vis[i] = true;
+            while(!q.isEmpty()){
+                int curr = q.remove();
+                for(int j = 0; j<graph[curr].size(); j++){
+                    Edge e = graph[curr].get(j);
+                    if(col[e.dest] == -1){
+                        col[e.dest] = 1 - col[curr];
+                        q.add(e.dest);
+                }
+                else if(col[e.dest] == col[curr]){
+                    return false;
+                }
+
+            }
+        }
+    } 
+}
+return true;
+}
+
+public static void main(String[] args){
+    int V = 5;
+    ArrayList<Edge>[] graph = new ArrayList[V];
     createGraph(graph);
-    System.out.println("DFS Traversal:");
-    dfs(graph);
-  }
+    System.out.println("Bipartite Graph: " + isBipartite(graph));
+}
+
 }
