@@ -272,6 +272,85 @@
 
 // Connected Components
 
+// import java.util.*;
+
+// public class Graph1 {
+
+//   static class Edge {
+//     int src;
+//     int dest;
+//     int wt;
+
+//     public Edge(int s, int d, int w) {
+//       this.src = s;
+//       this.dest = d;
+//       this.wt = w;
+//     }
+//   }
+
+//   static void createGraph(ArrayList<Edge>[] graph) {
+//     for (int i = 0; i < graph.length; i++) {
+//       graph[i] = new ArrayList<>();
+//     }
+
+//     // Component 1
+//     graph[0].add(new Edge(0, 1, 5));
+//     graph[1].add(new Edge(1, 0, 5));
+//     graph[1].add(new Edge(1, 2, 1));
+//     graph[2].add(new Edge(2, 1, 1));
+
+//     // Component 2
+//     graph[3].add(new Edge(3, 4, 1));
+//     graph[4].add(new Edge(4, 3, 1));
+//   }
+
+//   public static void bfs(ArrayList<Edge>[] graph) {
+//     boolean[] vis = new boolean[graph.length];
+//     int count = 0;
+
+//     for (int i = 0; i < graph.length; i++) {
+//       if (!vis[i]) {
+//         System.out.println("Connected Component " + (++count) + ":");
+//         bfsutil(graph, vis, i); // ✅ FIXED: pass i
+//         System.out.println();
+//       }
+//     }
+//     System.out.println("Total Connected Components: " + count);
+//   }
+
+//   public static void bfsutil(ArrayList<Edge>[] graph, boolean[] vis, int start) {
+//     Queue<Integer> q = new LinkedList<>();
+//     q.add(start);
+//     vis[start] = true;
+
+//     while (!q.isEmpty()) {
+//       int curr = q.poll();
+//       System.out.print(curr + " ");
+
+//       for (Edge e : graph[curr]) {
+//         if (!vis[e.dest]) {
+//           q.add(e.dest);
+//           vis[e.dest] = true;
+//         }
+//       }
+//     }
+//   }
+
+//   public static void main(String[] args) {
+//     int v = 5;
+//     ArrayList<Edge>[] graph = new ArrayList[v];
+//     createGraph(graph);
+
+//     System.out.println("BFS Traversal and Connected Components:");
+//     bfs(graph);
+//   }
+// }
+
+
+
+// Connected Components using DFS:-
+
+
 import java.util.*;
 
 public class Graph1 {
@@ -293,55 +372,55 @@ public class Graph1 {
       graph[i] = new ArrayList<>();
     }
 
-    // Component 1
+    // 0 :-
     graph[0].add(new Edge(0, 1, 5));
+
+    // 1:-
     graph[1].add(new Edge(1, 0, 5));
     graph[1].add(new Edge(1, 2, 1));
-    graph[2].add(new Edge(2, 1, 1));
+    graph[1].add(new Edge(1, 3, 3));
 
-    // Component 2
-    graph[3].add(new Edge(3, 4, 1));
-    graph[4].add(new Edge(4, 3, 1));
+    // 2:-
+    graph[2].add(new Edge(2, 1, 1));
+    graph[2].add(new Edge(2, 3, 1));
+    graph[2].add(new Edge(2, 4, 2));
+
+    // 3:-
+    graph[3].add(new Edge(3, 1, 3));
+    graph[3].add(new Edge(3, 2, 1));
+
+    // 4:-
+    graph[4].add(new Edge(4, 2, 2));
   }
 
-  public static void bfs(ArrayList<Edge>[] graph) {
-    boolean[] vis = new boolean[graph.length];
-    int count = 0;
+public static void dfsUtil(ArrayList<Edge>[] graph, int curr , boolean vis[] ) {
+    System.out.println(curr);
+    vis[curr] = true;
+    
+    for (Edge e : graph[curr]) {
+      if (!vis[e.dest]) {
+        dfsUtil(graph, e.dest, vis);
+      }
+    }
+  }
 
-    for (int i = 0; i < graph.length; i++) {
-      if (!vis[i]) {
+  public static void dfs(ArrayList<Edge>[] graph) {
+    boolean vis[] = new boolean[graph.length];
+    int count = 0;
+    for(int i =0 ; i<graph.length; i++){
+      if(!vis[i]){
         System.out.println("Connected Component " + (++count) + ":");
-        bfsutil(graph, vis, i); // ✅ FIXED: pass i
+        dfsUtil(graph, i, vis);
         System.out.println();
       }
     }
     System.out.println("Total Connected Components: " + count);
-  }
-
-  public static void bfsutil(ArrayList<Edge>[] graph, boolean[] vis, int start) {
-    Queue<Integer> q = new LinkedList<>();
-    q.add(start);
-    vis[start] = true;
-
-    while (!q.isEmpty()) {
-      int curr = q.poll();
-      System.out.print(curr + " ");
-
-      for (Edge e : graph[curr]) {
-        if (!vis[e.dest]) {
-          q.add(e.dest);
-          vis[e.dest] = true;
-        }
-      }
-    }
-  }
-
+}
   public static void main(String[] args) {
     int v = 5;
-    ArrayList<Edge>[] graph = new ArrayList[v];
+    ArrayList<Edge>[] graph = new ArrayList[v]; // null -> empty ArrayList
     createGraph(graph);
-
-    System.out.println("BFS Traversal and Connected Components:");
-    bfs(graph);
+    System.out.println("DFS Traversal:");
+    dfs(graph);
   }
 }
