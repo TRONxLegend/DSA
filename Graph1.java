@@ -990,49 +990,136 @@
 
 // Question : Connecting Cities with Minimum Cost //
 
-import java.util.*;
-public class Graph1{
-    static class Edge implements Comparable<Edge>{
-        int dest;
-        int cost;
-        public Edge(int d, int c){
-            this.dest = d;
-            this.cost = c;
-        }
+// import java.util.*;
+// public class Graph1{
+//     static class Edge implements Comparable<Edge>{
+//         int dest;
+//         int cost;
+//         public Edge(int d, int c){
+//             this.dest = d;
+//             this.cost = c;
+//         }
     
+//         @Override
+//         public int compareTo(Edge e2){
+//             return this.cost - e2.cost; // Ascending order
+//         }
+//         }
+//         public static int connectcities(int cities[][]){
+//             PriorityQueue<Edge> pq = new PriorityQueue<>();
+//             boolean vist[] = new boolean[cities.length];
+//             int totalCost = 0;
+//             pq.add(new Edge(0, 0)); // Start from city 0 with cost 0
+
+//             while(!pq.isEmpty()){
+//                 Edge curr = pq.remove();
+//                 if(!vist[curr.dest]){
+//                     vist[curr.dest] = true;
+//                    totalCost += curr.cost;
+
+//                    for(int i= 0; i<cities[curr.dest].length; i++){
+//                     if(cities[curr.dest][i] != 0){
+//                         pq.add(new Edge(i, cities[curr.dest][i]));
+//                    }
+//                 }
+//             }
+//         }
+//         return totalCost;
+//     }
+//     public static void main(String args[]){
+//         int cities[][] = {{0,1,2,3,4},
+//                           {1,0,5,0,7},
+//                           {2,5,0,6,0},
+//                           {3,0,6,0,0},
+//                           {4,7,0,0,0}};
+//         int totalCost = connectcities(cities);
+//         System.out.println("Total cost to connect all cities is: " + totalCost);
+//     }
+// }
+
+
+// Kruskal's Algorithm: Minimum Spanning Tree (MST) //
+import java.util.*;
+
+public class Graph1 {
+    static class Edge implements Comparable<Edge> {
+        int src, dest, wt;
+        public Edge(int s, int d, int w) {
+            this.src = s;
+            this.dest = d;
+            this.wt = w;
+        }
+
         @Override
-        public int compareTo(Edge e2){
-            return this.cost - e2.cost; // Ascending order
+        public int compareTo(Edge e2) {
+            return this.wt - e2.wt; // Sort by weight
         }
+    }
+
+    static int n = 4;
+    static int parent[] = new int[n];
+    static int rank[] = new int[n];
+
+    public static void init() {
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+            rank[i] = 0;
         }
-        public static int connectcities(int cities[][]){
-            PriorityQueue<Edge> pq = new PriorityQueue<>();
-            boolean vist[] = new boolean[cities.length];
-            int totalCost = 0;
-            pq.add(new Edge(0, 0)); // Start from city 0 with cost 0
+    }
 
-            while(!pq.isEmpty()){
-                Edge curr = pq.remove();
-                if(!vist[curr.dest]){
-                    vist[curr.dest] = true;
-                   totalCost += curr.cost;
+    public static int find(int u) {
+        if (parent[u] == u) return u;
+        return parent[u] = find(parent[u]); // Path compression
+    }
 
-                   for(int i= 0; i<cities[curr.dest].length; i++){
-                    if(cities[curr.dest][i] != 0){
-                        pq.add(new Edge(i, cities[curr.dest][i]));
-                   }
-                }
+    public static void union(int u, int v) {
+        int pu = find(u);
+        int pv = find(v);
+        if (pu != pv) {
+            if (rank[pu] < rank[pv]) {
+                parent[pu] = pv;
+            } else if (rank[pu] > rank[pv]) {
+                parent[pv] = pu;
+            } else {
+                parent[pv] = pu;
+                rank[pu]++;
             }
         }
-        return totalCost;
     }
-    public static void main(String args[]){
-        int cities[][] = {{0,1,2,3,4},
-                          {1,0,5,0,7},
-                          {2,5,0,6,0},
-                          {3,0,6,0,0},
-                          {4,7,0,0,0}};
-        int totalCost = connectcities(cities);
-        System.out.println("Total cost to connect all cities is: " + totalCost);
+
+    public static void Kruskal(ArrayList<Edge> edgeList, int V) {
+        Collections.sort(edgeList); // Sort by weight
+        init(); // Initialize DSU
+        int ans = 0;
+        int count = 0;
+
+        for (int i = 0; count < V - 1 && i < edgeList.size(); i++) {
+            Edge e = edgeList.get(i);
+            int pu = find(e.src);
+            int pv = find(e.dest);
+            if (pu != pv) {
+                union(e.src, e.dest);
+                ans += e.wt;
+                count++;
+                System.out.println("Edge: " + e.src + " - " + e.dest + " with weight: " + e.wt);
+            }
+        }
+        System.out.println("Total cost of Minimum Spanning Tree: " + ans);
+    }
+
+    public static void main(String args[]) {
+        int V = 4;
+        // Step 1: Create a list of all edges (since Kruskal needs a global edge list)
+        ArrayList<Edge> edges = new ArrayList<>();
+
+        // Step 2: Add edges (undirected graph)
+        edges.add(new Edge(0, 1, 10));
+        edges.add(new Edge(0, 2, 15));
+        edges.add(new Edge(0, 3, 30));
+        edges.add(new Edge(1, 3, 40));
+        edges.add(new Edge(2, 3, 50));
+
+        // Step 3: Call Kruskal
+        Kruskal(edges, V);
     }
 }
