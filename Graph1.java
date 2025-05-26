@@ -1039,87 +1039,113 @@
 
 
 // Kruskal's Algorithm: Minimum Spanning Tree (MST) //
+// import java.util.*;
+
+// public class Graph1 {
+//     static class Edge implements Comparable<Edge> {
+//         int src, dest, wt;
+//         public Edge(int s, int d, int w) {
+//             this.src = s;
+//             this.dest = d;
+//             this.wt = w;
+//         }
+
+//         @Override
+//         public int compareTo(Edge e2) {
+//             return this.wt - e2.wt; // Sort by weight
+//         }
+//     }
+
+//     static int n = 4;
+//     static int parent[] = new int[n];
+//     static int rank[] = new int[n];
+
+//     public static void init() {
+//         for (int i = 0; i < n; i++) {
+//             parent[i] = i;
+//             rank[i] = 0;
+//         }
+//     }
+
+//     public static int find(int u) {
+//         if (parent[u] == u) return u;
+//         return parent[u] = find(parent[u]); // Path compression
+//     }
+
+//     public static void union(int u, int v) {
+//         int pu = find(u);
+//         int pv = find(v);
+//         if (pu != pv) {
+//             if (rank[pu] < rank[pv]) {
+//                 parent[pu] = pv;
+//             } else if (rank[pu] > rank[pv]) {
+//                 parent[pv] = pu;
+//             } else {
+//                 parent[pv] = pu;
+//                 rank[pu]++;
+//             }
+//         }
+//     }
+
+//     public static void Kruskal(ArrayList<Edge> edgeList, int V) {
+//         Collections.sort(edgeList); // Sort by weight
+//         init(); // Initialize DSU
+//         int ans = 0;
+//         int count = 0;
+
+//         for (int i = 0; count < V - 1 && i < edgeList.size(); i++) {
+//             Edge e = edgeList.get(i);
+//             int pu = find(e.src);
+//             int pv = find(e.dest);
+//             if (pu != pv) {
+//                 union(e.src, e.dest);
+//                 ans += e.wt;
+//                 count++;
+//                 System.out.println("Edge: " + e.src + " - " + e.dest + " with weight: " + e.wt);
+//             }
+//         }
+//         System.out.println("Total cost of Minimum Spanning Tree: " + ans);
+//     }
+
+//     public static void main(String args[]) {
+//         int V = 4;
+//         // Step 1: Create a list of all edges (since Kruskal needs a global edge list)
+//         ArrayList<Edge> edges = new ArrayList<>();
+
+//         // Step 2: Add edges (undirected graph)
+//         edges.add(new Edge(0, 1, 10));
+//         edges.add(new Edge(0, 2, 15));
+//         edges.add(new Edge(0, 3, 30));
+//         edges.add(new Edge(1, 3, 40));
+//         edges.add(new Edge(2, 3, 50));
+
+//         // Step 3: Call Kruskal
+//         Kruskal(edges, V);
+//     }
+// }
+
+
+// Flood-Fill Algorithm: Finding Connected Components in a 2D Grid //
 import java.util.*;
-
-public class Graph1 {
-    static class Edge implements Comparable<Edge> {
-        int src, dest, wt;
-        public Edge(int s, int d, int w) {
-            this.src = s;
-            this.dest = d;
-            this.wt = w;
+public class Graph1{
+    public int[][] helper(int[][] image, int sr, int sc, int color, boolean[][] vis, int originalColor) {
+        if (sr < 0 || sr >= image.length || sc < 0 || sc >= image[0].length || vis[sr][sc] || image[sr][sc] != originalColor) {
+            return image; // Out of bounds or already visited or not the original color
         }
+      // left
+      helper(image, sr, sc-1, color, vis, originalColor);
+        // right
+        helper(image, sr, sc+1, color, vis, originalColor);
+        // up
+        helper(image, sr-1, sc, color, vis, originalColor);
+        // down
+        helper(image, sr+1, sc, color, vis, originalColor);
 
-        @Override
-        public int compareTo(Edge e2) {
-            return this.wt - e2.wt; // Sort by weight
-        }
-    }
-
-    static int n = 4;
-    static int parent[] = new int[n];
-    static int rank[] = new int[n];
-
-    public static void init() {
-        for (int i = 0; i < n; i++) {
-            parent[i] = i;
-            rank[i] = 0;
-        }
-    }
-
-    public static int find(int u) {
-        if (parent[u] == u) return u;
-        return parent[u] = find(parent[u]); // Path compression
-    }
-
-    public static void union(int u, int v) {
-        int pu = find(u);
-        int pv = find(v);
-        if (pu != pv) {
-            if (rank[pu] < rank[pv]) {
-                parent[pu] = pv;
-            } else if (rank[pu] > rank[pv]) {
-                parent[pv] = pu;
-            } else {
-                parent[pv] = pu;
-                rank[pu]++;
-            }
-        }
-    }
-
-    public static void Kruskal(ArrayList<Edge> edgeList, int V) {
-        Collections.sort(edgeList); // Sort by weight
-        init(); // Initialize DSU
-        int ans = 0;
-        int count = 0;
-
-        for (int i = 0; count < V - 1 && i < edgeList.size(); i++) {
-            Edge e = edgeList.get(i);
-            int pu = find(e.src);
-            int pv = find(e.dest);
-            if (pu != pv) {
-                union(e.src, e.dest);
-                ans += e.wt;
-                count++;
-                System.out.println("Edge: " + e.src + " - " + e.dest + " with weight: " + e.wt);
-            }
-        }
-        System.out.println("Total cost of Minimum Spanning Tree: " + ans);
-    }
-
-    public static void main(String args[]) {
-        int V = 4;
-        // Step 1: Create a list of all edges (since Kruskal needs a global edge list)
-        ArrayList<Edge> edges = new ArrayList<>();
-
-        // Step 2: Add edges (undirected graph)
-        edges.add(new Edge(0, 1, 10));
-        edges.add(new Edge(0, 2, 15));
-        edges.add(new Edge(0, 3, 30));
-        edges.add(new Edge(1, 3, 40));
-        edges.add(new Edge(2, 3, 50));
-
-        // Step 3: Call Kruskal
-        Kruskal(edges, V);
-    }
 }
+    public int[][] floodfill(int[][] image, int sr, int sc, int color){
+        boolean vis[][] = new boolean[image.length][image[0].length];
+        helper(image, sr, sc, color, vis, image[sr][sc]);
+        return image;
+    }
+  
+    }
